@@ -60,3 +60,55 @@ exports.getSubtopic = (req,res)=>{
         })
     })
 }
+
+exports.getQuiz = (req,res)=>{
+    const course_id = req.params.course_id;
+    const moduleId = req.params.moduleId;
+
+    Course.findById(course_id,(err,course)=>{
+        if(err){
+            console.log(err);
+        }
+        const test = course.syllabus[moduleId].test;
+        console.log(test);
+        const attr = getCourseAtrributes(course);
+
+        res.render('courses/quiz',{
+            course_id,
+            moduleId,
+            ...attr,
+            test
+        })
+    })
+
+}
+
+exports.postQuiz = (req,res)=>{
+    console.log("In Post");
+    console.log(req.body);
+    const course_id = req.params.course_id;
+    const moduleId = req.params.moduleId;
+
+    const answers = req.body;
+    Course.findById(course_id,(err,course)=>{
+        if(err){
+            console.log(err);
+        }
+        result = {};
+        const test = course.syllabus[moduleId].test;
+        test.forEach((question,index)=>{
+            if(question.correctAnswer === answers['question'+index] ){
+                console.log("Right");
+                result[index+1] = true
+            }else{
+                result[index+1] = false
+
+            }
+        });
+        console.log(result)
+        res.render("courses/resultAnalysis",{
+            result
+        });
+    })
+    
+}

@@ -8,5 +8,9 @@ router.get("/courses/:course_id", CourseController.getIndividualCourse);
 
 router.get("/courses/:course_id/:moduleId/subtopic/:subtopicId",CourseController.getSubtopic);
 
+router.get("/courses/:course_id/:moduleId/quiz",CourseController.getQuiz);
+
+router.post("/courses/:course_id/:moduleId/quiz",CourseController.postQuiz);
+
 // router.post("/potholes/:uid/:complaint_id",potholeController.changeStatus);
 module.exports = router;
