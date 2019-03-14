@@ -18,11 +18,19 @@ exports.getIndividualCourse = (req,res)=>{
     const course_id = req.params.course_id;
     Course.findById(course_id,(err,course)=>{
 
-        const syllabus = course.syllabus
-
+        const syllabus = course.syllabus;
+        const courseName = course.courseName;
+        const courseDesc = course.description;
+        const modules = [];
+        syllabus.forEach((module) => {
+            modules.push(module);
+        });
+        // console.log(modules[0].moduleName);
         res.render('courses/individualCourse',{
-            course:course,
-            syllabus 
-        })
+            courseName,
+            courseDesc,
+            modules 
+        });
     })
 }
+
