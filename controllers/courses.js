@@ -17,8 +17,12 @@ exports.getCourses = (req,res)=>{
 exports.getIndividualCourse = (req,res)=>{
     const course_id = req.params.course_id;
     Course.findById(course_id,(err,course)=>{
+
+        const syllabus = course.syllabus
+
         res.render('courses/individualCourse',{
-            course:course
+            course:course,
+            syllabus 
         })
     })
 }
