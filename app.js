@@ -29,12 +29,14 @@ app.use(
 		extended: true
 	})
 );
-// use method-override to override form POST request into PUT request
+app.get("/", function(req, res) {
+	res.render("index");
+  });// use method-override to override form POST request into PUT request
 app.use(methodOveride("_method"));
 // use expressSanitizer to sanitize the input given by user
 //app.use(expressSanitizer());
 
-app.use("/",authRoutes);
+//app.use("/",authRoutes);
 
 // const ref = database.ref("result/HDL7SJZlZNRbw452zWZclKgTkTu2");
 // ref.once("value", function (snapshot) {
