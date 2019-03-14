@@ -6,7 +6,6 @@ var CourseSchema = new mongoose.Schema({
     syllabus : [
         {
             moduleId: String,
-            moduleName : String,
             subtopics : [
                 {
                     subtopicName : String,
@@ -15,15 +14,8 @@ var CourseSchema = new mongoose.Schema({
                 }
 
             ],
-            test : [
-                {
-                    questionId : String,
-                    questionDescription : String,
-                    difficulty : String,
-                    accuracy : Number,
-                    options : [],
-                    correctAnswer : String
-                }
+            tests : [
+            
             ]
         }
     ]
