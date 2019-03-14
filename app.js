@@ -10,15 +10,15 @@ const bodyParser 			= require("body-parser"),
 	User					= require("./models/User");
 
 
-// mongoose.connect("mongodb://localhost:27017/PotholeWenApp",{ useNewUrlParser: true })
-// 	.then(result=>{
-// 		console.log("connected to mongodb");
+mongoose.connect("mongodb+srv://sam:abcd123@cluster0-1uhjw.mongodb.net/syrus",{ useNewUrlParser: true })
+	.then(result=>{
+		console.log("connected to mongodb");
 		
-// 	})
-// 	.catch(e=>{
-// 		console.log("error connecting mongo",e);
+	})
+	.catch(e=>{
+		console.log("error connecting mongo",e);
 		
-// 	})
+	});
 // tell express to use "ejs" as our templating engine
 app.set("view engine", "ejs");
 //serve public directory
@@ -34,7 +34,6 @@ app.use(methodOveride("_method"));
 // use expressSanitizer to sanitize the input given by user
 //app.use(expressSanitizer());
 
-app.use("/",authRoutes);
 
 // const ref = database.ref("result/HDL7SJZlZNRbw452zWZclKgTkTu2");
 // ref.once("value", function (snapshot) {
