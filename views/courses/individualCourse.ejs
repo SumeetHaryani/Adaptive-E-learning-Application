@@ -80,35 +80,48 @@
  */
 </style>
 <div>
-  <div class="container-fluid">
-    <div class="row">
-      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-        <div class="sidebar-sticky">
-          <ul class="nav flex-column">
-            <h3>Syllabus</h3>
-            <% modules.forEach((module,index)=>{ %>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <span data-feather="file"></span>
-                <%= module.moduleName %>
-              </a>
-              <ul>
-                <% module.subtopics.forEach((topic,id)=>{ %>
-                <li class="nav-item">
-                  <a class="nav-link" href="/courses/<%= course_id %>/<%= index %>/subtopic/<%= id %>">
-                    <span data-feather="shopping-cart"></span>
-                    <%= topic.subtopicName %>
-                  </a>
-                </li>
-                <% }) %>
-              </ul>
-            </li>
-            <% }) %>
-
-
-
-          </ul>
-        </div>
-      </nav>
+        <div class="container-fluid">
+                <div class="row">
+                  <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                    <div class="sidebar-sticky">
+                      <ul class="nav flex-column">
+                            <h3>Syllabus</h3>
+                        <% modules.forEach((module,index)=>{ %>
+                            <li class="nav-item">
+                                    <a class="nav-link" href="#">
+                                      <span data-feather="file"></span>
+                                        <%= module.moduleName %>
+                                    </a>
+                                    <ul>
+                                        <% module.subtopics.forEach((topic,id)=>{ %>
+                                            <li class="nav-item">
+                                                <a class="nav-link"
+                                                 href="/courses/<%= course_id %>/<%= index %>/subtopic/<%= id %>"
+                                                 >
+                                                  <span data-feather="shopping-cart"></span>
+                                                  <%= topic.subtopicName %>
+                                                </a>
+                                            </li>
+                                        <% }) %>
+                                    </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link"
+                                 href="/courses/<%= course_id %>/<%= index %>/quiz"
+                                 >
+                                  <span data-feather="shopping-cart"></span>
+                                  Module Test
+                                </a>
+                            </li>
+                        <% }) %>
+                        
+                        
+                        
+                        
+                      </ul>
+                    </div>
+                  </nav>
+          
+</div>
 
     </div>
