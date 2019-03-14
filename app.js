@@ -31,7 +31,16 @@ app.use(
 );
 app.get("/", function(req, res) {
 	res.render("index");
-  });// use method-override to override form POST request into PUT request
+  });
+  app.get("/register", function(req, res) {
+	res.render("auth/register");
+  }); 
+  app.get("/login", function(req, res) {
+	res.render("auth/login");
+  });
+ 
+ 
+  // use method-override to override form POST request into PUT request
 app.use(methodOveride("_method"));
 // use expressSanitizer to sanitize the input given by user
 //app.use(expressSanitizer());
