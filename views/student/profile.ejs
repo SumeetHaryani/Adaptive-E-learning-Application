@@ -17,6 +17,8 @@
     .profile-img img{
         width: 70%;
         height: 40%;
+        border:2px solid #4285F4;
+        border-radius: 15px; 
     }
     .profile-img .file {
         position: relative;
@@ -40,15 +42,7 @@
     .profile-head h6{
         color: #0062cc;
     }
-    .profile-edit-btn{
-        border: none;
-        border-radius: 1.5rem;
-        width: 70%;
-        padding: 2%;
-        font-weight: 600;
-        color: #6c757d;
-        cursor: pointer;
-    }
+
     .proile-rating{
         font-size: 12px;
         color: #818182;
@@ -103,11 +97,8 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-img">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
-                    <div class="file btn btn-lg btn-primary">
-                        Change Photo
-                        <input type="file" name="file"/>
-                    </div>
+                    <img src="https://avatars.dicebear.com/v2/male/ <%= currentUser.firstName %>.svg?options[mood][]=happy" alt=""/>
+                    
                 </div>
             </div>
             <div class="col-md-6">
@@ -129,9 +120,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-md-2">
-                <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
-            </div>
+          
         </div>
         <div class="row">
             <div class="col-md-4">
