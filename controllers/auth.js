@@ -23,8 +23,6 @@ exports.postRegister = (req, res) => {
     });
 }
 //handling user sign up
-
-
 // LOGIN ROUTES
 //render login form
 exports.getLogin = (req, res) => {

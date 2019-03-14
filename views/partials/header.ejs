@@ -4,10 +4,12 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-        crossorigin="anonymous">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.4/css/mdb.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <title>E-Learning</title>
@@ -20,7 +22,7 @@
 </head>
 
 <body>
-    <nav class="navbar  navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar  navbar-expand-lg navbar-dark primary-color">
         <a class="navbar-brand" href="/">
             <i class="material-icons" style="color:aqua">
                 school
@@ -40,7 +42,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
             <ul class="navbar-nav ml-auto">
-
+                
                 <% if(!currentUser){ %>
                 <li class="nav-item">
                     <a class="nav-link" href="/register"><span class="fas fa-user"></span> Sign Up</a>
@@ -49,10 +51,14 @@
                     <a class="nav-link" href="/login"><span class="fas fa-sign-in-alt"></span> Login</a>
                 </li>
                 <% } else { %>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><span class="fas fa-sign-in-alt"></span> Signed In As
-                        <%= currentUser.firstName %></a>
-                </li>
+                    <li class="nav-item avatar">
+        <a class="nav-link" href="/student">
+          <img src="https://avatars.dicebear.com/v2//john.svg?options[mood][]=happy" class="rounded-circle z-depth-0" alt="avatar image" height="35">
+          Signed In As
+          <%= currentUser.firstName %>
+        </a>
+      </li>
+               
                 <li class="nav-item">
                     <a class="nav-link" href="/logout"><span class="fas fa-sign-in-alt"></span> Log out</a>
                 </li>
@@ -61,3 +67,4 @@
             </ul>
         </div>
     </nav>
+    
