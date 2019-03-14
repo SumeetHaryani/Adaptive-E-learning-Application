@@ -22,37 +22,46 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                                <label for="inputEmail2" class="col-sm-3 col-form-label">Last Name</label>
-                                <div class="col-sm-9">
-                                    <input type="text" name="lastName" class="form-control" id="inputEmail2" placeholder="Enter your full name"
-                                        required>
-                                </div>
+                            <label for="inputEmail2" class="col-sm-3 col-form-label">Last Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="lastName" class="form-control" id="inputEmail2" placeholder="Enter your full name"
+                                    required>
                             </div>
-                            <div class="form-group row">
-                                <label for="inputEmail1" class="col-sm-3 col-form-label">Gender</label>
-                                <div class="col-sm-9">
-                                    <div class="form-check-inline">
-                                        <label class="form-check-label">
-                                          <input type="radio" class="form-check-input" name="optradio">Male
-                                        </label>
-                                      </div>
-                                      <div class="form-check-inline">
-                                        <label class="form-check-label">
-                                          <input type="radio" class="form-check-input" name="optradio">Female
-                                        </label>
-                                      </div>
-                                    
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail1" class="col-sm-3 col-form-label">Gender</label>
+                            <div class="col-sm-9">
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" value="male" name="optradio"
+                                            required>Male
+                                    </label>
                                 </div>
-                            </div>
-                            <!-- Group of default radios - option 1 -->
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" value="female" name="optradio"
+                                            required>Female
+                                    </label>
+                                </div>
 
-  
-  <!-- Group of default radios - option 2 -->
-  <div class="custom-control custom-radio">
-    <input type="radio" class="custom-control-input" id="defaultGroupExample2" name="groupOfDefaultRadios" checked>
-    <label class="custom-control-label" for="defaultGroupExample2">Option 2</label>
-  </div>
-  
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="mobile" class="col-sm-3 col-form-label">Mobile Number</label>
+                            <div class="col-sm-9">
+                                <input type="text" id="mobile" placeholder="Enter your 10 digit mobile number" class="form-control"
+                                    name="mobile" pattern="[1-9]{1}[0-9]{9}" required>
+
+                            </div>
+                        </div>
+                        <!-- Group of default radios - option 1 -->
+                        <div class="form-group row">
+                            <label for="skill" class="col-sm-3 col-form-label">Skills</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="skill" class="form-control" id="skill" placeholder="Enter your Skills"
+                                    required>
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-3 col-form-label">Email</label>
                             <div class="col-sm-9">
