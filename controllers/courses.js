@@ -1,6 +1,30 @@
-const mongoose = require('mongoose');
-const Course = require('../models/Course');
+const mongoose = require("mongoose");
+const Course = require("../models/Course");
 
+<<<<<<< HEAD
+exports.getCourses = (req, res) => {
+  Course.find({}, (err, courses) => {
+    if (err) {
+      console.log(err);
+    }
+    console.log(courses);
+    res.render("courses/allCourses", {
+      allCourses: courses
+    });
+  });
+};
+
+exports.getIndividualCourse = (req, res) => {
+  const course_id = req.params.course_id;
+  Course.findById(course_id, (err, course) => {
+    const syllabus = course.syllabus;
+    res.render("courses/individualCourse", {
+      course: course,
+      syllabus
+    });
+  });
+};
+=======
 exports.getCourses = (req,res)=>{
     
     Course.find({},(err,courses)=>{
@@ -60,3 +84,4 @@ exports.getSubtopic = (req,res)=>{
         })
     })
 }
+>>>>>>> 35178484a51ce1f234e4a6b863ff979fd2847dda

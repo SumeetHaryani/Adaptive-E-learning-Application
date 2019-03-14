@@ -1,0 +1,26 @@
+<% include ../partials/header %>
+<div class="container mt-5">
+  <form method="POST">
+    <h4>Select your knowledge level</h4>
+    <select class="form-control" name="level">
+      <option value="Beginner">Beginner</option>
+      <option value="Intermediate">Intermediate</option>
+      <option value="Advanced">Advanced</option>
+    </select>
+    <h4>Select your goals</h4>
+    <select class="form-control" name="goal">
+      <option value="Make a website">Make a website</option>
+      <option value="Data Science">Data Science</option>
+      <option value="Artificial Intelligence">Artificial Intelligence</option>
+    </select>
+    <h4>Select your Work-Experience</h4>
+    <select class="form-control" name="workExperience">
+      <option value="0-2yrs">0-2yrs</option>
+      <option value="2-5ys">2-5ys</option>
+      <option value="5-10yrs">5-10yrs</option>
+    </select>
+    <button type="submit" class="btn btn-primary mt-5">Submit</button>
+  </form>
+</div>
+
+<% include ../partials/footer %>
