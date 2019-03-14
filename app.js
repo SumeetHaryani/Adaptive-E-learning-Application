@@ -4,6 +4,7 @@ const bodyParser = require("body-parser"),
 	app = express(),
 	mongoose = require('mongoose'),
 	courseRoutes = require('./routes/courses');
+	studentRoutes=require('./routes/student');
 passport = require('passport'),
 	LocalStrategy = require("passport-local"),
 	passportLocalMongoose = require("passport-local-mongoose"),
@@ -69,6 +70,7 @@ app.use(methodOveride("_method"));
 //app.use(expressSanitizer());
 
 app.use("/", courseRoutes);
+app.use("/", studentRoutes);
 
 app.use("/", authRoutes);
 
