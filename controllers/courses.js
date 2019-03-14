@@ -13,16 +13,50 @@ exports.getCourses = (req,res)=>{
         });
     })
 }
+const getCourseAtrributes = (course)=>{
+    const syllabus = course.syllabus;
+        const courseName = course.courseName;
+        const courseDesc = course.description;
+        const modules = [];
+        syllabus.forEach((module) => {
+            modules.push(module);
+        });
+        return {
+            courseName,
+            courseDesc,
+            modules
+        }
 
+}
 exports.getIndividualCourse = (req,res)=>{
     const course_id = req.params.course_id;
     Course.findById(course_id,(err,course)=>{
 
-        const syllabus = course.syllabus
-
+        const attr = getCourseAtrributes(course);
+        console.log(attr);
         res.render('courses/individualCourse',{
-            course:course,
-            syllabus 
+            course_id,
+            ...attr
+        });
+    })
+}
+
+exports.getSubtopic = (req,res)=>{
+    const course_id = req.params.course_id;
+    const moduleId = req.params.moduleId;
+    const subtopicId = req.params.subtopicId;
+
+    Course.findById(course_id,(err,course)=>{
+        if(err){
+            console.log(err);
+        }
+        const subtopicDetails = course.syllabus[moduleId].subtopics[subtopicId];
+        console.log(subtopicDetails);
+        const attr = getCourseAtrributes(course);
+        res.render('courses/subtopicDetails',{
+            course_id,
+            subtopicDetails,
+            ...attr
         })
     })
 }
