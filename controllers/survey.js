@@ -13,16 +13,39 @@ exports.submit = (req, res) => {
   const level = req.body.level;
   const goal = req.body.goal;
   const workExperience = req.body.workExperience;
-  const data = {
+  const data_survey = {
     id: course_id,
     level: level,
     goal: goal,
     workExperience: workExperience
   };
+  const data_courses = {
+    id: course_id,
+    status: "Enrolled",
+    isSurveyComplete: true
+  };
   console.log("Here" + course_id);
   User.findById(user_id, (err, user) => {
-    user.survey.push(data);
+    user.survey.push(data_survey);
+    user.courses.push(data_courses);
     user.save();
-    res.redirect("/courses/" + course_id);
+  });
+  res.redirect("/courses/" + course_id);
+};
+// TODO Make Enroll button Disappear @saketoz
+exports.checkIfSurveyComplete = (req, res, next) => {
+  const course_id = req.params.course_id;
+  const user_id = res.locals.currentUser._id;
+  console.log("In checkIfSurveyComplete", user_id);
+
+  User.findById(user_id, (err, user) => {
+    user.courses.forEach(element => {
+      console.log(element.id, element.isSurveyComplete);
+
+      if (element.id == course_id && element.isSurveyComplete == true) {
+        res.redirect("/courses/" + course_id);
+      }
+    });
+    res.redirect("/courses/" + course_id + "/survey");
   });
 };
