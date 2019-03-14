@@ -1,55 +1,58 @@
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <title>E-Learning</title>
-    
-  </head>
-  
-  <body>
+
+</head>
+
+<body>
     <nav class="navbar  navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="/">
-        <i class="material-icons" style="color:aqua">
-            school
-        </i>
-        E-learning
-      </a>
-      <ul class="nav navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="/courses">Courses</a>
-        </li>
-      </ul>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-  
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-  
-        <ul class="navbar-nav ml-auto">
-  
-     
-          <li class="nav-item">
-            <a class="nav-link" href="/register"><span class="fas fa-user"></span> Sign Up</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/login"><span class="fas fa-sign-in-alt"></span> Login</a>
-          </li>
-        
-          <li class="nav-item">
-            <a class="nav-link" href="#"><span class="fas fa-sign-in-alt"></span> Signed In As
-           </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/logout"><span class="fas fa-sign-in-alt"></span> Log out</a>
-          </li>
-     
-  
+        <a class="navbar-brand" href="/">
+            <i class="material-icons" style="color:aqua">
+                school
+            </i>
+            E-Learning
+        </a>
+        <ul class="nav navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/courses">Courses</a>
+            </li>
         </ul>
-      </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <ul class="navbar-nav ml-auto">
+
+                <% if(!currentUser){ %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/register"><span class="fas fa-user"></span> Sign Up</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login"><span class="fas fa-sign-in-alt"></span> Login</a>
+                </li>
+                <% } else { %>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><span class="fas fa-sign-in-alt"></span> Signed In As
+                        <%= currentUser.firstName %></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout"><span class="fas fa-sign-in-alt"></span> Log out</a>
+                </li>
+                <% } %>
+
+            </ul>
+        </div>
     </nav>
