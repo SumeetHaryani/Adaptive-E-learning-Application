@@ -6,6 +6,9 @@ var UserSchema = new mongoose.Schema({
   password: String,
   firstName: String,
   lastName: String,
+  gender: String,
+  mobile: String,
+  skill: String,
   courses: [
     {
       type: mongoose.Schema.Types.ObjectId,
