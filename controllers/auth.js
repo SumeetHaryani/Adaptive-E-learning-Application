@@ -8,10 +8,14 @@ exports.getRegister = (req, res) => {
 
 }
 exports.postRegister = (req, res) => {
+    console.log(req.body)
     User.register(new User({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
-        username: req.body.username
+        username: req.body.username,
+        mobile: req.body.mobile,
+        gender: req.body.optradio,
+        skill:req.body.skill
     }), req.body.password, function (err, user) {
         if (err) {
             console.log(err);
