@@ -11,19 +11,23 @@ var UserSchema = new mongoose.Schema({
   skill: String,
   courses: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Course",
-      status: String
+      id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+      },
+      status: String,
+      isSurveyComplete: Boolean
     }
   ],
 
   survey: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Course",
+      id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Course"
+      },
       level: String,
       goal: String,
-      outcome: String,
       workExperience: String
     }
   ]
