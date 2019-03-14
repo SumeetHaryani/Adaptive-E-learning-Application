@@ -15,9 +15,7 @@ var CourseSchema = new mongoose.Schema({
 
             ],
             tests : [
-                {
-
-                }
+            
             ]
         }
     ]

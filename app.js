@@ -2,7 +2,8 @@ const bodyParser 			= require("body-parser"),
 	methodOveride 			= require("method-override"),
 	express 				= require("express"),
 	app 					= express(),
-	mongoose 				= require('mongoose'),
+    mongoose 				= require('mongoose'),
+    courseRoutes            = require('./routes/courses');
 	passport 				= require('passport'),
 	LocalStrategy         	= require("passport-local"),
     passportLocalMongoose 	= require("passport-local-mongoose"),
@@ -36,20 +37,8 @@ app.use(methodOveride("_method"));
 // use expressSanitizer to sanitize the input given by user
 //app.use(expressSanitizer());
 
-<<<<<<< HEAD
-=======
-//app.use("/",authRoutes);
->>>>>>> 148cc9d8da3dfbf7a2ec8a76dcb65841f03aa9c6
+app.use("/",courseRoutes);
 
-// const ref = database.ref("result/HDL7SJZlZNRbw452zWZclKgTkTu2");
-// ref.once("value", function (snapshot) {
-// 		const potholes = snapshot.val();
-// 		//console.log(potholes);
-// 	},
-// 	function (errorObject) {
-// 		console.log("The read failed: " + errorObject.code);
-// 	}
-// );
 
 
 app.listen(3000, function () {
