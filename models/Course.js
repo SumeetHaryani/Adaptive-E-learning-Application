@@ -1,33 +1,31 @@
 var mongoose = require("mongoose");
 
 var CourseSchema = new mongoose.Schema({
-    courseName: String,
-    description : String,
-    syllabus : [
+  courseName: String,
+  description: String,
+  syllabus: [
+    {
+      moduleId: String,
+      moduleName: String,
+      subtopics: [
         {
-            moduleId: String,
-            moduleName : String,
-            subtopics : [
-                {
-                    subtopicName : String,
-                    videoLink : String,
-                    content : String
-                }
-
-            ],
-            test : [
-                {
-                    questionId : String,
-                    questionDescription : String,
-                    difficulty : String,
-                    accuracy : Number,
-                    options : [],
-                    correctAnswer : String
-                }
-            ]
+          subtopicName: String,
+          videoLink: String,
+          content: String
         }
-    ]
+      ],
+      test: [
+        {
+          questionId: String,
+          questionDescription: String,
+          difficulty: String,
+          accuracy: Number,
+          options: [],
+          correctAnswer: String
+        }
+      ]
+    }
+  ]
 });
-
 
 module.exports = mongoose.model("Course", CourseSchema);

@@ -1,6 +1,31 @@
 <% include ../partials/header %>
-
-Analysis
-
-
-<% include ../partials/footer %>
+<div class="container">
+  <!--Panel-->
+  <% result.forEach((r,index)=>{ %>
+  <div class="card mt-3">
+    <h5 class="card-header">
+      <%= r.question.questionDescription %>
+    </h5>
+    <div class="card-body">
+      <ul class="list-group">
+        <% r.question.options.forEach((o,index)=>{ %>
+        <li
+          class="list-group-item d-flex justify-content-between align-items-center"
+        >
+          <%= o %> <% if(o == r.answer && o == r.user_answer){ %>
+          <span class="badge badge-success badge-pill"
+            >Correct Answer Well Done</span
+          >
+          <% } else{ %> <% if(o == r.answer){ %>
+          <span class="badge badge-success badge-pill">Correct</span>
+          <% } %> <% if(o == r.user_answer){ %>
+          <span class="badge badge-danger badge-pill">Your choice</span>
+          <% } %> <% } %>
+        </li>
+        <% }) %>
+      </ul>
+    </div>
+  </div>
+  <% }) %>
+</div>
+<%include ../partials/footer %>
