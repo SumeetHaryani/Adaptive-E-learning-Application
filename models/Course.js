@@ -2,6 +2,7 @@ var mongoose = require("mongoose");
 
 var CourseSchema = new mongoose.Schema({
     courseName: String,
+    creator:String,
     description: String,
     syllabus: [{
         moduleId: String,
