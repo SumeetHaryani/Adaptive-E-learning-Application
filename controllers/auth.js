@@ -15,14 +15,14 @@ exports.postRegister = (req, res) => {
         username: req.body.username,
         mobile: req.body.mobile,
         gender: req.body.optradio,
-        skill:req.body.skill
+        skill: req.body.skill
     }), req.body.password, function (err, user) {
         if (err) {
             console.log(err);
             return res.render('auth/register');
         }
         passport.authenticate("local")(req, res, function () {
-            res.redirect("/");
+            res.redirect("/courses");
         });
     });
 }
@@ -36,8 +36,6 @@ exports.getLogin = (req, res) => {
 exports.postLogin = (req, res) => {
 
 }
-
-
 
 exports.logout = (req, res) => {
     req.logout();

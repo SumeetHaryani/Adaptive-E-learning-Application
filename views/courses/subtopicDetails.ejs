@@ -3,29 +3,34 @@
 function function1() {
     document.getElementById("demo0").innerHTML = '<i class="material-icons" style="color:green">done</i>';
     document.getElementById("demo1").innerHTML = '<i class="material-icons" style="color:green">done</i>';
+}
+    </script>
+<div class="container">
 
-  }
-</script>
-<main role="main" class="col-md-9 ml-sm-auto col-lg-10">
-  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-    <h1 class="h2">
-      <%= subtopicDetails.subtopicName %>
-    </h1>
+  <main role="main" class="col-md-9 ml-sm-auto col-lg-10">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+      <h1 class="h2">
+        <%= subtopicDetails.subtopicName %>
+      </h1>
 
-  </div>
+    </div>
 
 
-  <iframe width="60%" height="60%" src="https://www.youtube.com/embed/<%= subtopicDetails.videolink %>?start=4"
-    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-    allowfullscreen></iframe>
+
+    <iframe width="100%" height="60%" src="https://www.youtube.com/embed/<%= subtopicDetails.videolink %>?start=4"
+      frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen></iframe>
     <br>
+    <div class="card">
+      <div class="card-body">
+        <h6><%= subtopicDetails.content %></h6>
+      </div>
+    </div>
     <button class="btn btn-danger red-gradient" onclick="function1()" >Mark as completed</button>
 
-</main>
-<div class="ml-5">
-
-
+  </main>
 </div>
+
 
 
 <% include ../partials/footer %>
