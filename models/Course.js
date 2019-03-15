@@ -10,7 +10,7 @@ var CourseSchema = new mongoose.Schema({
       subtopics: [
         {
           subtopicName: String,
-          videoLink: String,
+          videolink: String,
           content: String
         }
       ],
