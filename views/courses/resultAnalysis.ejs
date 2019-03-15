@@ -9,13 +9,9 @@
     <div class="card-body">
       <ul class="list-group">
         <% r.question.options.forEach((o,index)=>{ %>
-        <li
-          class="list-group-item d-flex justify-content-between align-items-center"
-        >
+        <li class="list-group-item d-flex justify-content-between align-items-center">
           <%= o %> <% if(o == r.answer && o == r.user_answer){ %>
-          <span class="badge badge-success badge-pill"
-            >Correct Answer Well Done</span
-          >
+          <span class="badge badge-success badge-pill">Correct Answer Well Done</span>
           <% } else{ %> <% if(o == r.answer){ %>
           <span class="badge badge-success badge-pill">Correct</span>
           <% } %> <% if(o == r.user_answer){ %>
