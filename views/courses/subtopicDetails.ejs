@@ -1,14 +1,17 @@
 <% include ./individualCourse %>
-<script>
-function function1() {
-    document.getElementById("demo0").innerHTML = '<i class="material-icons" style="color:green">done</i>';
-    document.getElementById("demo1").innerHTML = '<i class="material-icons" style="color:green">done</i>';
-}
-    </script>
+<script src="http://www.youtube.com/player_api"></script>
+
 <div class="container">
 
   <main role="main" class="col-md-9 ml-sm-auto col-lg-10">
+    <div class="progress">
+      <div id="p1" class="progress-bar  progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="40"
+        aria-valuemin="0" aria-valuemax="100" style="width:0%">
+
+      </div>
+    </div>
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+
       <h1 class="h2">
         <%= subtopicDetails.subtopicName %>
       </h1>
@@ -16,20 +19,99 @@ function function1() {
     </div>
 
 
-
-    <iframe width="100%" height="60%" src="https://www.youtube.com/embed/<%= subtopicDetails.videolink %>?start=4"
-      frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen></iframe>
+    <iframe id="player" width="100%" height="60%" src="https://www.youtube.com/embed/<%= subtopicDetails.videolink %>?enablejsapi=1"
+      frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     <br>
     <div class="card">
       <div class="card-body">
-        <h6><%= subtopicDetails.content %></h6>
+        <h6>
+          <%= subtopicDetails.content %>
+        </h6>
       </div>
+      <a class="nav-link"
+      href="/courses/<%= course_id %>/subtopic/"
+      >dfdf</a>
     </div>
-    <button class="btn btn-danger red-gradient" onclick="function1()" >Mark as completed</button>
+   <form id="form" action="" method="POST">
+         <button class="btn btn-danger red-gradient" type="submit" onclick="function1()">Mark as completed</button>
+        </form>
+
+         <Span id="a1" style="color:red;  font-weight: bold;"></Span>
 
   </main>
 </div>
+
+
+
+
+
+
+<script>
+
+  var player, timer, timeSpent = [],p1 = document.getElementById('p1');
+var percent;
+  window.onYouTubeIframeAPIReady = function () {
+    player = new YT.Player('player', {
+      events: {
+        'onStateChange': onPlayerStateChange
+      }
+    });
+  }
+
+  function onPlayerStateChange(event) {
+    if (event.data === 1) { // Started playing
+      if (!timeSpent.length) {
+        for (var i = 0, l = parseInt(player.getDuration()); i < l; i++) timeSpent.push(false);
+      }
+      timer = setInterval(record, 100);
+    } else {
+      clearInterval(timer);
+    }
+  }
+
+  function record() {
+    timeSpent[parseInt(player.getCurrentTime())] = true;
+    showPercentage();
+  }
+
+  function showPercentage() {
+  
+  
+     percent = <%= currentUser.progress[mId.m_id].percent%>+20;
+    for (var i = 0, l = timeSpent.length; i < l; i++) {
+      if (timeSpent[i]) percent++;
+    }
+    percent = Math.round(percent / timeSpent.length * 100);
+    p1.style.width = percent + "%";
+    p1.innerHTML =percent + "% Complete";
+  }
+
+
+
+  function function1() {
+    var x=document.getElementById("a1");
+    if(percent<2){
+      x.innerHTML="Please complete the  <%= subtopicDetails.subtopicName %> !";
+      
+    }else{
+      x.style.color="green";
+      x.innerHTML="Completed  <%= subtopicDetails.subtopicName %> !"+z;
+
+    }
+  } 
+  $("#form").submit( function(eventObj) {
+      $('<input />').attr('type', 'hidden')
+          .attr('name', "percent")
+          .attr('value',percent)
+          .appendTo('#form');
+      return true;
+  });
+</script>
+
+
+
+
+
 
 
 
