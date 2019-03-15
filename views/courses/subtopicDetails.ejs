@@ -1,35 +1,20 @@
 <% include ./individualCourse %>
 
-<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
     <h1 class="h2">
       <%= subtopicDetails.subtopicName %>
     </h1>
 
-    <div class="btn-toolbar mb-2 mb-md-0">
-      <div class="btn-group mr-2">
-        <button class="btn btn-sm btn-outline-secondary">Share</button>
-        <button class="btn btn-sm btn-outline-secondary">Export</button>
-      </div>
-      <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
-        <span data-feather="calendar"></span>
-        This week
-      </button>
-    </div>
-    <br>
-    <br>
-
-
   </div>
 
-
-  </div>
-
-</main>
-<div class="container mr-1">
 
   <iframe width="60%" height="60%" src="https://www.youtube.com/embed/<%= subtopicDetails.videolink %>?start=4"
-    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen></iframe>
+</main>
+<div class="ml-5">
+
 
 </div>
 
