@@ -16,8 +16,8 @@
                         <footer class="blockquote-footer">Created by <%= course.creator %> </footer>
                     </blockquote>
                     <% if(currentUser && currentUser.courses.length > 0){ %>
-                        <% currentUser.courses.forEach(course=>{ %>
-                            <% if(course._id == course._id){ %>
+                        <% currentUser.courses.forEach(c=>{ %>
+                            <% if(c.id.equals(course._id)){ %>
                                 <a href="/courses/<%= course._id %>" class="btn btn-primary">Proceed To Course</a>
                             <% }else{ %>
                                 <a href="/courses/<%= course._id %>/survey" class="btn btn-primary">Enroll</a>

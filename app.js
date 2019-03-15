@@ -4,12 +4,12 @@ const bodyParser = require("body-parser"),
 	app = express(),
 	mongoose = require('mongoose'),
 	courseRoutes = require('./routes/courses');
-studentRoutes = require('./routes/student');
-passport = require('passport'),
+	studentRoutes = require('./routes/student');
+	passport = require('passport'),
 	LocalStrategy = require("passport-local"),
 	passportLocalMongoose = require("passport-local-mongoose"),
 	authRoutes = require('./routes/auth'); //routes import
-User = require("./models/user");
+	User = require("./models/user");
 
 
 mongoose.connect("mongodb+srv://sam:abcd123@cluster0-1uhjw.mongodb.net/syrus", {
@@ -68,7 +68,9 @@ app.get("/", function (req, res) {
 app.use(methodOveride("_method"));
 // use expressSanitizer to sanitize the input given by user
 //app.use(expressSanitizer());
-
+// app.use("/",(req,res,next)=>{
+// 	res.redirect('/courses');
+// });
 app.use("/", courseRoutes);
 app.use("/", studentRoutes);
 
