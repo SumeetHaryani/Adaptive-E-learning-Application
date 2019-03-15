@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Course = require("../models/Course");
 
 exports.getCourses = (req, res) => {
-  const user  = req.user;
+  const user = req.user;
   console.log(user);
   Course.find({}, (err, courses) => {
     if (err) {
@@ -31,14 +31,14 @@ const getCourseAtrributes = course => {
   };
 };
 exports.getIndividualCourse = (req, res) => {
-  console.log("params",req.params);
+  console.log("params", req.params);
   const course_id = req.params.course_id;
-  console.log("course_id",course_id);
+  console.log("course_id", course_id);
   Course.findById(course_id, (err, course) => {
-    if(err){
-      console.log("Individual course error",err);
+    if (err) {
+      console.log("Individual course error", err);
     }
-    console.log("Course",course);
+    console.log("Course", course);
     const attr = getCourseAtrributes(course);
     // console.log(attr);
     res.render("courses/individualCourse", {
