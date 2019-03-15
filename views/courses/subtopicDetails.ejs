@@ -5,6 +5,7 @@
     <h1 class="h2">
       <%= subtopicDetails.subtopicName %>
     </h1>
+
     <div class="btn-toolbar mb-2 mb-md-0">
       <div class="btn-group mr-2">
         <button class="btn btn-sm btn-outline-secondary">Share</button>
@@ -15,13 +16,22 @@
         This week
       </button>
     </div>
+    <br>
+    <br>
+
 
   </div>
-  <iframe width="560" height="315" src="<%= subtopicDetails.videolink %>" frameborder="0" allow="autoplay; encrypted-media"
-    allowfullscreen></iframe>
+
 
   </div>
+
 </main>
+<div class="container mr-1">
+
+  <iframe width="60%" height="60%" src="https://www.youtube.com/embed/<%= subtopicDetails.videolink %>?start=4"
+    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+</div>
 
 
 <% include ../partials/footer %>
