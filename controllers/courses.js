@@ -213,13 +213,13 @@ exports.postQuiz = (req, res) => {
           // console.log(result);
           res.render("courses/resultAnalysis", {
             result,
-            recommendations
+            recommendations,
+            course_id
           });
         }
       })
 
     })
-
 
   });
 };
