@@ -75,13 +75,14 @@
 
   function showPercentage() {
     <% if(currentUser.progress[mId.m_id]==undefined){ %>
-    percent = 0 <% }else{ %>
+    percent = 0 
+    <% }else{ %>
     percent = <%= currentUser.progress[mId.m_id].percent%> + 20;
     <% } %>
 
 
     for (var i = 0, l = timeSpent.length; i < l; i++) {
-      console.log("hh" + percent);
+      //console.log("hh" + percent);
 
       if (timeSpent[i]) percent++;
     }
