@@ -15,6 +15,7 @@ var UserSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Course"
       },
+      courseName:String,
       status: String,
       isSurveyComplete: Boolean
     }
@@ -30,7 +31,15 @@ var UserSchema = new mongoose.Schema({
       goal: String,
       workExperience: String
     }
-  ],
+  ],progress :[{
+    course_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Course"
+    },
+    module_id:String,
+    subtopic_id: String,
+    percent: { type: String, default: 0 }
+  }],
 
   testResults : [
     {

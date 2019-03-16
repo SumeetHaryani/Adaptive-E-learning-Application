@@ -10,7 +10,6 @@ exports.getCourses = (req, res) => {
     if (err) {
       console.log(err);
     }
-
     console.log(courses);
     res.render("courses/allCourses", {
       allCourses: courses
@@ -125,6 +124,7 @@ exports.getSubtopic = (req, res) => {
       res.render('courses/subtopicDetails', {
         course_id,
         subtopicDetails,
+        mId:{m_id:moduleId},
         ...attr
       })
 
@@ -152,6 +152,39 @@ exports.getQuiz = (req, res) => {
   })
 
 }
+exports.putSubtopicProgress = (req, res) => {
+  const course_id = req.params.course_id;
+  const moduleId = req.params.moduleId;
+  const subtopicId = req.params.subtopicId;
+  const percent =req.body.percent;
+  const user_id = res.locals.currentUser._id;
+
+  const progress = {
+    course_id: course_id,
+    module_id:moduleId,
+    subtopic_id: subtopicId,
+    percent:percent
+  };
+  User.findById(user_id, (err, user) => {
+    user.progress.push(progress);
+    user.save();
+  });
+  Course.findById(course_id, (err, course) => {
+    if (err) {
+      console.log(err);
+    }
+    const subtopicDetails = course.syllabus[moduleId].subtopics[subtopicId];
+    console.log(subtopicDetails);
+    const attr = getCourseAtrributes(course);
+    res.render('courses/subtopicDetails', {
+      course_id,
+      subtopicDetails,
+      mId:{m_id:moduleId},
+      ...attr
+    })
+  })
+}
+
 
 exports.postQuiz = (req, res) => {
   console.log("In Post");
