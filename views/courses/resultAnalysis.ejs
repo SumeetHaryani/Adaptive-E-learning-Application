@@ -2,20 +2,16 @@
 <div class="container">
   <!--Panel-->
   <% result.forEach((r,index)=>{ %>
-  <div class="card mt-3">
+  <div class="card mt-3 px-1 py-1">
     <h5 class="card-header">
       <%= r.question.questionDescription %>
     </h5>
     <div class="card-body">
       <ul class="list-group">
         <% r.question.options.forEach((o,index)=>{ %>
-        <li
-          class="list-group-item d-flex justify-content-between align-items-center"
-        >
+        <li class="list-group-item d-flex justify-content-between align-items-center">
           <%= o %> <% if(o == r.answer && o == r.user_answer){ %>
-          <span class="badge badge-success badge-pill"
-            >Correct Answer Well Done</span
-          >
+          <span class="badge badge-success badge-pill">Correct Answer Well Done</span>
           <% } else{ %> <% if(o == r.answer){ %>
           <span class="badge badge-success badge-pill">Correct</span>
           <% } %> <% if(o == r.user_answer){ %>
@@ -24,6 +20,19 @@
         </li>
         <% }) %>
       </ul>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <div class="card ml-2 mb-2">
+          <div class="card-body">
+            <h5 class="card-title">Panel title</h5>
+            <p class="card-text">Some quick example text to build on the panel title and make up the bulk of the panel's
+              content.</p>
+            <a class="card-link">Card link</a>
+            <a class="card-link">Another link</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <% }) %>

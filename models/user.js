@@ -38,7 +38,7 @@ var UserSchema = new mongoose.Schema({
     },
     module_id:String,
     subtopic_id: String,
-    percent:String
+    percent: { type: String, default: 0 }
   }]
 
 

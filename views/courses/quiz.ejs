@@ -117,8 +117,6 @@
 		<ol>
 			<% test.forEach((question,index)=>{ %>
 			<li>
-
-
 				<div class="form-group">
 					<label for="exampleSelect1" class="bmd-label-floating">
 						<h3><%= question.questionDescription %></h3>
@@ -130,14 +128,9 @@
 						<option value="3"><%= question.options[3] %></option>
 					</select>
 				</div>
-
 			</li>
 			<% }) %>
-
-
-
 		</ol>
-
 		<input type="submit" class="btn btn-raised btn-primary" value="Submit Quiz" />
 
 	</form>

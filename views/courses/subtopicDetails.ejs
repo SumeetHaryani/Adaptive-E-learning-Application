@@ -28,15 +28,14 @@
           <%= subtopicDetails.content %>
         </h6>
       </div>
-      <a class="nav-link"
-      href="/courses/<%= course_id %>/subtopic/"
-      >dfdf</a>
+      <a class="nav-link" href="/courses/<%= course_id %>/subtopic/">dfdf</a>
     </div>
-   <form id="form" action="" method="POST">
-         <button class="btn btn-danger red-gradient" type="submit" onclick="function1()">Mark as completed</button>
+    <form id="form" action="" method="POST" onsubmit="">
+      <button class="btn btn-danger red-gradient" type="submit"
+        ">Mark as completed</button>
         </form>
 
-         <Span id="a1" style="color:red;  font-weight: bold;"></Span>
+         <Span id=" a1" style="color:red;  font-weight: bold;"></Span>
 
   </main>
 </div>
@@ -47,9 +46,9 @@
 
 
 <script>
-
-  var player, timer, timeSpent = [],p1 = document.getElementById('p1');
-var percent;
+  var player, timer, timeSpent = [],
+    p1 = document.getElementById('p1');
+  var percent;
   window.onYouTubeIframeAPIReady = function () {
     player = new YT.Player('player', {
       events: {
@@ -75,36 +74,43 @@ var percent;
   }
 
   function showPercentage() {
-  
-  
-     percent = <%= currentUser.progress[mId.m_id].percent%>+20;
+    <% if(currentUser.progress[mId.m_id]==undefined){ %>
+    percent = 0 <% }else{ %>
+    percent = <%= currentUser.progress[mId.m_id].percent%> + 20;
+    <% } %>
+
+
     for (var i = 0, l = timeSpent.length; i < l; i++) {
+      console.log("hh" + percent);
+
       if (timeSpent[i]) percent++;
     }
     percent = Math.round(percent / timeSpent.length * 100);
     p1.style.width = percent + "%";
-    p1.innerHTML =percent + "% Complete";
+    p1.innerHTML = percent + "% Complete";
   }
 
 
 
   function function1() {
-    var x=document.getElementById("a1");
-    if(percent<2){
-      x.innerHTML="Please complete the  <%= subtopicDetails.subtopicName %> !";
-      
-    }else{
-      x.style.color="green";
-      x.innerHTML="Completed  <%= subtopicDetails.subtopicName %> !"+z;
 
+  }
+  $("#form").submit(function (eventObj) {
+    $('<input />').attr('type', 'hidden')
+      .attr('name', "percent")
+      .attr('value', percent)
+      .appendTo('#form');
+
+    var x = document.getElementById("a1");
+    if (percent < 400) {
+      x.innerHTML = "Please complete the  <%= subtopicDetails.subtopicName %> !";
+      return false
+    } else {
+      x.style.color = "green";
+      x.innerHTML = "Completed  <%= subtopicDetails.subtopicName %> !" + z;
+      return true
     }
-  } 
-  $("#form").submit( function(eventObj) {
-      $('<input />').attr('type', 'hidden')
-          .attr('name', "percent")
-          .attr('value',percent)
-          .appendTo('#form');
-      return true;
+
   });
 </script>
 
