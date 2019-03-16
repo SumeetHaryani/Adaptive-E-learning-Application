@@ -158,7 +158,7 @@ exports.postQuiz = (req, res) => {
   // console.log(req.body);
   const course_id = req.params.course_id;
   const moduleId = req.params.moduleId;
-  const user_id  = req.user._id;
+  const user_id = req.user._id;
 
   const answers = req.body;
   Course.findById(course_id, (err, course) => {
@@ -169,7 +169,7 @@ exports.postQuiz = (req, res) => {
     const test = course.syllabus[moduleId].test;
     // console.log("TEST:");
     // console.log(test);
-
+    let cnt = 0;
     test.forEach((question, index) => {
       if (question.correctAnswer === answers["question" + index]) {
         console.log("Right");
@@ -179,6 +179,7 @@ exports.postQuiz = (req, res) => {
           answer: question.options[question.correctAnswer],
           user_answer: question.options[answers["question" + index]]
         });
+        cnt += 1;
       } else {
         result.push({
           outcome: "false",
@@ -212,25 +213,38 @@ exports.postQuiz = (req, res) => {
           console.log("recommendations", recommendations);
           // console.log("RESULT:");
           // console.log(result);
-          console.log("Current User",req.user);
-          User.findById(user_id,(err,user)=>{
+          console.log("Current User", req.user);
+          User.findById(user_id, (err, user) => {
             console.log(user);
+            let level = "";
             user.testResults.push({
-              courseId : course_id,
-              moduleId : moduleId,
-              result   : result
-  
+              courseId: course_id,
+              moduleId: moduleId,
+              result: result
+
             });
+            if (result.length == cnt) {
+              user.survey.forEach(sur => {
+                if (sur.id.equals(course._id)) {
+                  level = sur.level;
+                  if (level == 'Beginner') {
+                    sur.level = 'Intermediate';
+                  } else if (level == 'Intermediate') {
+                    sur.level = 'Advanced';
+                  }
+                }
+              })
+            }
             user.save()
-                          
+
           });
           res.render("courses/resultAnalysis", {
             result,
             recommendations,
             course_id
           });
-          
-          
+
+
         }
       })
 
