@@ -2,7 +2,7 @@
 <div class="container">
   <!--Panel-->
   <% result.forEach((r,index)=>{ %>
-  <div class="card mt-3">
+  <div class="card mt-3 px-1 py-1">
     <h5 class="card-header">
       <%= r.question.questionDescription %>
     </h5>
@@ -20,6 +20,19 @@
         </li>
         <% }) %>
       </ul>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <div class="card ml-2 mb-2">
+          <div class="card-body">
+            <h5 class="card-title">Panel title</h5>
+            <p class="card-text">Some quick example text to build on the panel title and make up the bulk of the panel's
+              content.</p>
+            <a class="card-link">Card link</a>
+            <a class="card-link">Another link</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <% }) %>

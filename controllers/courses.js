@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Course = require("../models/Course");
+const User = require("../models/user");
 
 exports.getCourses = (req, res) => {
   const user = req.user;
@@ -15,11 +16,12 @@ exports.getCourses = (req, res) => {
     });
   });
 };
-const getCourseAtrributes = course => {
+const getCourseAtrributes = (course) => {
   console.log("course", course);
   const syllabus = course.syllabus;
   const courseName = course.courseName;
   const courseDesc = course.description;
+
   const modules = [];
   syllabus.forEach(module => {
     modules.push(module);
@@ -30,6 +32,7 @@ const getCourseAtrributes = course => {
     modules
   };
 };
+
 exports.getIndividualCourse = (req, res) => {
   console.log("params", req.params);
   const course_id = req.params.course_id;
@@ -38,50 +41,95 @@ exports.getIndividualCourse = (req, res) => {
     if (err) {
       console.log("Individual course error", err);
     }
-    console.log("Course", course);
-    const attr = getCourseAtrributes(course);
-    // console.log(attr);
-    res.render("courses/individualCourse", {
-      course_id,
-      ...attr
-    });
+    const syllabus = course.syllabus;
+    const courseName = course.courseName;
+    const courseDesc = course.description;
+    const user_id = res.locals.currentUser._id;
+    let level = ""
+    User.findById(user_id, (err, user) => {
+      user.survey.forEach(sur => {
+        if (sur.id.equals(course._id)) {
+          level = sur.level;
+          console.log(level)
+        }
+      })
+      const modules = [];
+      syllabus.forEach(module => {
+        console.log(module.difficulty)
+        if (level == 'Beginner' && module.difficulty == '0') {
+          modules.push(module);
+        } else if (level == 'Intermediate' && (module.difficulty == '0' || module.difficulty == '1')) {
+          modules.push(module)
+        }
+        else if (level == 'Advanced') {
+          modules.push(module)
+        }
+      });
+      attr = {
+        courseName,
+        courseDesc,
+        modules
+      };
+      res.render("courses/individualCourse", {
+        course_id,
+        ...attr
+      });
+    })
   });
 };
 
-exports.getSubtopic = (req, res) => {
-  const course_id = req.params.course_id;
-  const moduleId = req.params.moduleId;
-  const subtopicId = req.params.subtopicId;
-
-  const attr = getCourseAtrributes(course);
-  console.log(attr);
-  res.render('courses/individualCourse', {
-    course_id,
-    ...attr
-  });
-}
-
 
 exports.getSubtopic = (req, res) => {
   const course_id = req.params.course_id;
   const moduleId = req.params.moduleId;
   const subtopicId = req.params.subtopicId;
+
 
   Course.findById(course_id, (err, course) => {
     if (err) {
       console.log(err);
     }
+    const syllabus = course.syllabus;
+    const courseName = course.courseName;
+    const courseDesc = course.description;
     const subtopicDetails = course.syllabus[moduleId].subtopics[subtopicId];
     console.log(subtopicDetails);
-    const attr = getCourseAtrributes(course);
-    res.render('courses/subtopicDetails', {
-      course_id,
-      subtopicDetails,
-      ...attr
+    const user_id = res.locals.currentUser._id;
+    let level = ""
+    User.findById(user_id, (err, user) => {
+      user.survey.forEach(sur => {
+        if (sur.id.equals(course._id)) {
+          level = sur.level;
+          console.log(level)
+        }
+      })
+      const modules = [];
+      syllabus.forEach(module => {
+        console.log(module.difficulty)
+        if (level == 'Beginner' && module.difficulty == '0') {
+          modules.push(module);
+        } else if (level == 'Intermediate' && (module.difficulty == '0' || module.difficulty == '1')) {
+          modules.push(module)
+        }
+        else if (level == 'Advanced') {
+          modules.push(module)
+        }
+      });
+      console.log("Modules", modules)
+      attr = {
+        courseName,
+        courseDesc,
+        modules
+      };
+      res.render('courses/subtopicDetails', {
+        course_id,
+        subtopicDetails,
+        ...attr
+      })
+
     })
   })
 }
-
 exports.getQuiz = (req, res) => {
   const course_id = req.params.course_id;
   const moduleId = req.params.moduleId;
@@ -146,5 +194,3 @@ exports.postQuiz = (req, res) => {
     });
   });
 };
-
-
