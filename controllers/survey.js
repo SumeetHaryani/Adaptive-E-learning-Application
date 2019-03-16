@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const User = require("../models/user");
-
+const Course= require("../models/Course"); 
 // console.log(req.currentUser);
 // const user_id = res.locals.currentUser._id;
 exports.survey = (req, res) => {
@@ -19,8 +19,17 @@ exports.submit = (req, res) => {
     goal: goal,
     workExperience: workExperience
   };
+  let courseName;
+  Course.findById(course_id, (err, course) => {
+    if(err){
+      console.log("course error",err);
+    }
+     courseName=course.courseName;
+    //console.log("Cour",course.courseName);
+     });
   const data_courses = {
     id: course_id,
+    courseName:courseName,
     status: "Enrolled",
     isSurveyComplete: true
   };

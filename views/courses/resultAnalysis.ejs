@@ -3,7 +3,7 @@
   <!--Panel-->
   <% result.forEach((r,index)=>{ %>
   <div class="card mt-3 px-1 py-1 border-primary">
-    <h5 class="card-header">
+    <h5 class="card-header h5">
       <%= r.question.questionDescription %>
     </h5>
     <div class="card-body">
@@ -32,7 +32,8 @@
               help you out! </p>
             <ul class="list-group list-group-flush">
               <% recommendations['question' + index].forEach((url,ind)=>{ %>
-              <li class="list-group-item"><a href="<%= url %>">Example</a></li>
+              <li class="list-group-item"><a href="<%= url %>"
+                  target="_blank"><%= titles['question' + index][ind] %></a></li>
               <% }) %>
             </ul>
           </div>

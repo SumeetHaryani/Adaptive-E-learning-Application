@@ -8,7 +8,7 @@ const router = express.Router();
 router.get("/login", authController.getLogin);
 
 router.post("/login", passport.authenticate("local", {
-    successRedirect: "/",
+    successRedirect: "/courses",
     failureRedirect: "/login"
 }), authController.postLogin);
 

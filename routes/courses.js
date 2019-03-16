@@ -13,7 +13,10 @@ router.get(
   "/courses/:course_id/:moduleId/subtopic/:subtopicId",
   CourseController.getSubtopic
 );
-
+ router.post(
+     "/courses/:course_id/:moduleId/subtopic/:subtopicId",
+   CourseController.putSubtopicProgress
+ );
 router.get("/courses/:course_id/:moduleId/quiz",CourseController.getQuiz);
 
 router.post("/courses/:course_id/:moduleId/quiz",CourseController.postQuiz);
