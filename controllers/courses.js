@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Course = require("../models/Course");
 const User = require("../models/user");
 const Content = require("../models/Content");
+const question = require("../models/Question");
 
 exports.getCourses = (req, res) => {
   const user = req.user;
@@ -198,7 +199,7 @@ exports.postQuiz = (req, res) => {
       // console.log("contents",contents);
       contents.forEach(content => {
         if (content.moduleId == moduleId && content.category == 'RF') {
-          console.log("Contents", content.recommendations);
+          // console.log("Contents", content.recommendations);
           result.forEach((obj, index) => {
             if (obj.outcome == "false") {
               const difficulty = obj.question.difficulty;
@@ -209,12 +210,12 @@ exports.postQuiz = (req, res) => {
               })
             }
           });
-          console.log("recommendations", recommendations);
+          // console.log("recommendations", recommendations);
           // console.log("RESULT:");
           // console.log(result);
           console.log("Current User",req.user);
           User.findById(user_id,(err,user)=>{
-            console.log(user);
+            // console.log(user);
             user.testResults.push({
               courseId : course_id,
               moduleId : moduleId,
@@ -238,3 +239,64 @@ exports.postQuiz = (req, res) => {
 
   });
 };
+
+exports.getQuizAnalysis = (req,res)=>{
+  const courseId = req.params.course_id;
+  const moduleId = req.params.moduleId;
+  const qid = req.params.qid;
+  let result;
+
+  User.findById(req.user._id,(err,user)=>{
+    const resultarr = user.testResults;
+
+    resultarr.forEach(r =>{
+      if(r.courseId.equals(courseId) && r.moduleId == moduleId){
+        result = r;
+      }
+    });
+    let practiceQs = []
+    result.result.forEach((r,index)=>{
+      const difficulty = r.question.difficulty;
+      // console.log("real q difficult", difficulty);
+      // console.log("result q obj",r);
+      // console.log("qid", qid);
+      // const accuracy = r.question.accuracy;
+      if(qid == index && r.outcome == "true"){
+        question.find({},(err,qs)=>{
+
+          // console.log("comapring qid and index",index);
+          // console.log("outcome",r.outcome);
+          // console.log("question db result",qs[0]);
+          qs[0].questions.forEach((q)=>{
+            // console.log("comparing q difficulty", q.difficulty);
+
+            if(q.difficulty == difficulty){
+              practiceQs.push(q);
+            }
+          })
+          console.log("Questions Recommended",practiceQs);
+          res.render("courses/quizAnalysis",{
+            practiceQs
+          })
+            
+        })
+      }else if(qid == index && r.outcome == "false"){
+        question.find({},(err,qs)=>{
+          qs[0].questions.forEach((q)=>{
+            if(q.difficulty == difficulty){
+              practiceQs.push(q);
+            }
+          })
+          console.log("Questions Recommended",practiceQs);
+  
+          res.render("courses/quizAnalysis",{
+            practiceQs
+          })
+        })
+      }
+    })
+    
+  })
+    
+  
+}
