@@ -100,7 +100,7 @@
       .attr('name', "percent")
       .attr('value', percent)
       .appendTo('#form');
-
+    eventObj.preventDefault();
     var x = document.getElementById("a1");
     if (percent < 400) {
       x.innerHTML = "Please complete the  <%= subtopicDetails.subtopicName %> !";
