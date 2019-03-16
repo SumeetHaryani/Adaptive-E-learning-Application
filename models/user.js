@@ -30,6 +30,17 @@ var UserSchema = new mongoose.Schema({
       goal: String,
       workExperience: String
     }
+  ],
+
+  testResults : [
+    {
+      courseId : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref  : "Course"
+      },
+      moduleId : Number,
+      result : []
+    }
   ]
 });
 

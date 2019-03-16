@@ -158,6 +158,7 @@ exports.postQuiz = (req, res) => {
   // console.log(req.body);
   const course_id = req.params.course_id;
   const moduleId = req.params.moduleId;
+  const user_id  = req.user._id;
 
   const answers = req.body;
   Course.findById(course_id, (err, course) => {
@@ -211,10 +212,24 @@ exports.postQuiz = (req, res) => {
           console.log("recommendations", recommendations);
           // console.log("RESULT:");
           // console.log(result);
+          console.log("Current User",req.user);
+          User.findById(user_id,(err,user)=>{
+            console.log(user);
+            user.testResults.push({
+              courseId : course_id,
+              moduleId : moduleId,
+              result   : result
+  
+            });
+            user.save()
+                          
+          });
           res.render("courses/resultAnalysis", {
             result,
             recommendations
           });
+          
+          
         }
       })
 
