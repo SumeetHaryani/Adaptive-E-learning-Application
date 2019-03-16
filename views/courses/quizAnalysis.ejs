@@ -1,0 +1,30 @@
+<% include ../partials/header %>
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-8">
+            <h1 class="text-centre h1 ml-4 mt-2">Practice Questions</h1>
+            <ol style="list-style-type:none !important">
+                <% practiceQs.forEach((q,index)=>{ %>
+                <li>
+                    <div class="form-group">
+                        <label for="exampleSelect1" class="bmd-label-floating">
+                            <h4><%= index+1 %>. <%= q.question %></h4>
+                        </label>
+                        <select class="form-control" name="question<%= index %>" id="exampleSelect1">
+                            <option value="0"><%= q.options[0] %></option>
+                            <option value="1"><%= q.options[1] %></option>
+                            <option value="2"><%= q.options[2] %></option>
+                            <option value="3"><%= q.options[3] %></option>
+                        </select>
+                    </div>
+                    <hr>
+                </li>
+                <% }) %>
+            </ol>
+        </div>
+    </div>
+
+
+</div>
+
+<% include ../partials/footer %>
