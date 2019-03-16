@@ -39,10 +39,18 @@ var UserSchema = new mongoose.Schema({
     module_id:String,
     subtopic_id: String,
     percent: { type: String, default: 0 }
-  }]
+  }],
 
-
-
+  testResults : [
+    {
+      courseId : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref  : "Course"
+      },
+      moduleId : Number,
+      result : []
+    }
+  ]
 });
 
 UserSchema.plugin(passportLocalMongoose);
