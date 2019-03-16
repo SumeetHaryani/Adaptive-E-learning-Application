@@ -2,7 +2,7 @@
 <div class="container">
   <!--Panel-->
   <% result.forEach((r,index)=>{ %>
-  <div class="card mt-3 px-1 py-1">
+  <div class="card mt-3 px-1 py-1 border-primary">
     <h5 class="card-header">
       <%= r.question.questionDescription %>
     </h5>
@@ -21,20 +21,28 @@
         <% }) %>
       </ul>
     </div>
-    <div class="row">
-      <div class="col-4">
+    <% if (recommendations['question' + index].length > 0) {%>
+
+    <div class="row justify-content-md-center">
+      <div class="col-6">
         <div class="card ml-2 mb-2">
           <div class="card-body">
-            <h5 class="card-title">Panel title</h5>
-            <p class="card-text">Some quick example text to build on the panel title and make up the bulk of the panel's
-              content.</p>
-            <a class="card-link">Card link</a>
-            <a class="card-link">Another link</a>
+            <h5 class="card-title">Recommendations</h5>
+            <p class="card-text">Looks like your concepts for the above question are not clear! Here are a few links to
+              help you out! </p>
+            <ul class="list-group list-group-flush">
+              <% recommendations['question' + index].forEach((url,ind)=>{ %>
+              <li class="list-group-item"><a href="<%= url %>">Example</a></li>
+              <% }) %>
+            </ul>
           </div>
         </div>
       </div>
     </div>
+    <% } %>
   </div>
   <% }) %>
+
+  <a href="/courses/<%= course_id %>" class="btn btn-primary btn-lg">Go Back</a>
 </div>
 <%include ../partials/footer %>

@@ -226,7 +226,8 @@ exports.postQuiz = (req, res) => {
           });
           res.render("courses/resultAnalysis", {
             result,
-            recommendations
+            recommendations,
+            course_id
           });
           
           
@@ -234,7 +235,6 @@ exports.postQuiz = (req, res) => {
       })
 
     })
-
 
   });
 };
