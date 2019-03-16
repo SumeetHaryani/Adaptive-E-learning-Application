@@ -16,16 +16,6 @@
                         <footer class="blockquote-footer">Created by <%= course.creator %> </footer>
                     </blockquote>
                     <% if(currentUser && currentUser.courses.length > 0){ %>
-<<<<<<< HEAD
-                        <% currentUser.courses.forEach(c=>{ %>
-                            <% if(c.id.equals(course._id)){ %>
-                                <a href="/courses/<%= course._id %>" class="btn btn-primary">Proceed To Course</a>
-                            <% }else{ %>
-                                <a href="/courses/<%= course._id %>/survey" class="btn btn-primary">Enroll</a>
-        
-                            <% } %>
-                        <% }) %>
-=======
                     <% currentUser.courses.forEach(c=>{ %>
                     <% if(course._id.equals(c.id)){ %>
                     <a href="/courses/<%= course._id %>" class="btn btn-primary">Proceed To Course</a>
@@ -34,7 +24,6 @@
                     <a href="/courses/<%= course._id %>/survey" class="btn btn-primary">Enroll</a>
                     <% } %>
                     <% }) %>
->>>>>>> 1d9c0008c12577a42f261efdbd888ab9111e59e9
                     <% }else if(currentUser && currentUser.courses.length === 0 ){ %>
                     <a href="/courses/<%= course._id %>/survey" class="btn btn-primary">Enroll</a>
                     <% }else{ %>
