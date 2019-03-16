@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Course = require("../models/Course");
 const User = require("../models/user");
+const Content = require("../models/Content");
 
 exports.getCourses = (req, res) => {
   const user = req.user;
@@ -154,7 +155,7 @@ exports.getQuiz = (req, res) => {
 
 exports.postQuiz = (req, res) => {
   console.log("In Post");
-  console.log(req.body);
+  // console.log(req.body);
   const course_id = req.params.course_id;
   const moduleId = req.params.moduleId;
 
@@ -165,9 +166,8 @@ exports.postQuiz = (req, res) => {
     }
     result = [];
     const test = course.syllabus[moduleId].test;
-    console.log("TEST:");
-
-    console.log(test);
+    // console.log("TEST:");
+    // console.log(test);
 
     test.forEach((question, index) => {
       if (question.correctAnswer === answers["question" + index]) {
@@ -187,10 +187,39 @@ exports.postQuiz = (req, res) => {
         });
       }
     });
-    console.log("RESULT:");
-    console.log(result);
-    res.render("courses/resultAnalysis", {
-      result
-    });
+    const recommendations = {
+      question0: [],
+      question1: [],
+      question2: []
+
+    }
+    Content.find({}, (err, contents) => {
+      // console.log("contents",contents);
+      contents.forEach(content => {
+        if (content.moduleId == moduleId && content.category == 'RF') {
+          console.log("Contents", content.recommendations);
+          result.forEach((obj, index) => {
+            if (obj.outcome == "false") {
+              const difficulty = obj.question.difficulty;
+              content.recommendations.forEach((r, i) => {
+                if (r.difficulty == difficulty) {
+                  recommendations['question' + index].push(r.contentURL);
+                }
+              })
+            }
+          });
+          console.log("recommendations", recommendations);
+          // console.log("RESULT:");
+          // console.log(result);
+          res.render("courses/resultAnalysis", {
+            result,
+            recommendations
+          });
+        }
+      })
+
+    })
+
+
   });
 };
