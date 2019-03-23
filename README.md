@@ -1,6 +1,6 @@
 # Adaptive E-learning
 <img src="/screenshots/computer.png" height="200px"/> <br>
-An adaptive E-Learing platform where students with flexible curriculum which changes according to users performance.   
+An adaptive E-Learing platform with flexible curriculum which changes according to users performance.   
 # Screenshots:
 <img src="/screenshots/1.png" />
 <img src="/screenshots/2.png"/>
